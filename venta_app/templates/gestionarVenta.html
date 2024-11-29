@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!--la fila-->
+<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2"><!--columna izquierda-->
+    <h1>Artesanias</h1>
+    <div class="card"> <!--tajeta-->
+    <div class="card-body">
+        <form action="/registrarVenta/" method="POST"> {% csrf_token %} <!--formulario-->
+            <div class="form-group">
+                <input type="text" id="numid_venta" name="numid_venta" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtcodigo_venta" name="txtcodigo_venta" class="form-control"
+                placeholder="Codigo Venta" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="numn_cliente" name="numn_cliente" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="date" id="txtfecha_venta" name="txtfecha_venta" class="form-control"
+                placeholder="Fecha Venta" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="numprecio" name="numprecio" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+            
+            <div class="form-group py-2">
+                <input type="text" id="numn_producto" name="numn_producto" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+           
+            <div class="form-group py-3">
+                <input type="text" id="txttipo_pago" name="txttipo_pago" class="form-control"
+                placeholder="Pago Venta" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form><!--formulario-->
+    </div>
+</div><!--tajeta-->
+</div><!--columna izquierda-->
+
+<div class="col-sm-10 col-md-10 col-lg-10 col-xl-10"><!--columna derecha-->
+    <h1>Listado de Ventas</h1>
+    <div class="table-responsive"><!--tabla responsiva-->
+    <img class="w-50" src="{% static 'img/venta1.jpg' %}" alt="Trulli" width="400" height="400"/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">N.Cliente</th>
+                <th scope="col">Fecha Venta</th>
+                <th scope="col">Precio</th>
+                <th scope="col">N.Producto</th>
+                <th scope="col">Pago</th>
+                <th colspan="2">Credito</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for m in misventas %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.id_venta}}</td>
+                    <td>{{m.codigo_venta}}</td>
+                    <td>{{m.n_cliente}}</td>
+                    <td>{{m.fecha_venta}}</td>
+                    <td>{{m.precio}}</td>
+                    <td>{{m.n_producto}}</td>
+                    <td>{{m.tipo_pago}}</td>
+                    <td> <a href="seleccionarVenta/{{m.id_venta}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="borrarVenta/{{m.id_venta}}" class="btn btn-danger">Borrar</a> </td> 
+                </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!--tabla responsiva-->
+</div><!--columna derecha-->
+
+</div><!--la fila-->
+{% endblock %}
