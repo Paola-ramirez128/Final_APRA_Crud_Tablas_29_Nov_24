@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <!-- La tarjeta card-->
+        <div class="card"> <!--tajeta-->
+            <div class="card-body">
+                <form action="/editarEmpleado/" method="POST"> {% csrf_token %} <!--formulario-->
+                    <div class="form-group">
+                        <input type="text" id="numid_empleado" name="numid_empleado" class="form-control"
+                        value="{{misempleados.id_empleado}}" minLenght="6" maxLenght="6" readonly reqired>
+                    </div>
+        
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        value="{{misempleados.direccion}}" maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numtelefono" name="numtelefono" class="form-control"
+                        value="{{misempleados.telefono}}" min="1" max="9" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtcorreo" name="txtcorreo" class="form-control"
+                        value="{{misempleados.correo}}" maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numsueldo" name="numsueldo" class="form-control"
+                        value="{{misempleados.sueldo}}" min="1" max="9" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txthorario" name="txthorario" class="form-control"
+                        value="{{misempleados.horario}}" maxLenght="100" reqired>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtpuesto" name="txtpuesto" class="form-control"
+                        value="{{misempleados.puesto}}" maxLenght="100" reqired>
+                    </div>
+        
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form><!--formulario-->
+            </div>
+        </div>
+    
+        <!-- fin de la tarjeta card-->
+    </div><!--Columna-->
+
+</div><!--La fila-->
+
+{% endblock %}
