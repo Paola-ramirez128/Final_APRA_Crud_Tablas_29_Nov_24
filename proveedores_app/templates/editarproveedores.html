@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <!-- La tarjeta card-->
+        <div class="card"> <!--tajeta-->
+            <div class="card-body">
+                <form action="/editarProveedor/" method="POST"> {% csrf_token %} <!--formulario-->
+                    <div class="form-group">
+                        <input type="text" id="numid_proveedor" name="numid_proveedor" class="form-control"
+                        value="{{misproveedores.id_proveedor}}" minLenght="6" maxLenght="6" readonly reqired>
+                    </div>
+        
+                    <div class="form-group py-2">
+                        <input type="text" id="numtelefono" name="numtelefono" class="form-control"
+                        value="{{misproveedores.telefono}}" min="1" max="9" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtgmail" name="txtgmail" class="form-control"
+                        value="{{misproveedores.gmail}}" maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="text" id="numraiting" name="numraiting" class="form-control"
+                        value="{{misproveedores.raiting}}" min="1" max="9" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="date" id="txtregistro_fecha" name="txtregistro_fecha" class="form-control"
+                        value="{{registro_fecha}}" maxLenght="100" reqired>
+                    </div>
+                                 
+                    <div class="form-group py-3">
+                        <input type="text" id="txttipo" name="txttipo" class="form-control"
+                        value="{{misproveedores.tipo}}" maxLenght="100" reqired>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtprovincia" name="txtprovincia" class="form-control"
+                        value="{{misproveedores.provincia}}" maxLenght="100" reqired>
+                    </div>
+        
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form><!--formulario-->
+            </div>
+        </div>
+    
+        <!-- fin de la tarjeta card-->
+    </div><!--Columna-->
+
+</div><!--La fila-->
+
+{% endblock %}

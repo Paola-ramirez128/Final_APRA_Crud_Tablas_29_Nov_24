@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+
+{% block cuerpo %}
+{% load static %}
+<div class="row"><!--la fila-->
+<div class="col-sm-2 col-md-2 col-lg-2 col-xl-2"><!--columna izquierda-->
+    <h1>Artesanias</h1>
+    <div class="card"> <!--tajeta-->
+    <div class="card-body">
+        <form action="/registrarProveedor/" method="POST"> {% csrf_token %} <!--formulario-->
+            <div class="form-group">
+                <input type="text" id="numid_proveedor" name="numid_proveedor" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="numtelefono" name="numtelefono" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txtgmail" name="txtgmail" class="form-control"
+                placeholder="Gmail Proveedor" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="numraiting" name="numraiting" class="form-control"
+                value="1" min="1" max="9" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="date" id="txtregistro_fecha" name="txtregistro_fecha" class="form-control"
+                placeholder="Registro Proveedor" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-3">
+                <input type="text" id="txttipo" name="txttipo" class="form-control"
+                placeholder="Tipo Proveedor" maxLenght="100" reqired>
+            </div>
+           
+            <div class="form-group py-3">
+                <input type="text" id="txtprovincia" name="txtprovincia" class="form-control"
+                placeholder="Provincia Proveedor" maxLenght="100" reqired>
+            </div>
+
+            <div class="form-group py-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form><!--formulario-->
+    </div>
+</div><!--tajeta-->
+</div><!--columna izquierda-->
+
+<div class="col-sm-10 col-md-10 col-lg-10 col-xl-10"><!--columna derecha-->
+    <h1>Listado de Proveedores</h1>
+    <img class="w-50" src="{% static 'img/proveedor1.jpg' %}" alt="Trulli" width="400" height="400"/>
+    <div class="table-responsive"><!--tabla responsiva-->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Gmail</th>
+                <th scope="col">Raiting</th>
+                <th scope="col">Registro</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Provincia</th>
+                <th colspan="2">Credito</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for m in misproveedores %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{m.id_proveedor}}</td>
+                    <td>{{m.telefono}}</td>
+                    <td>{{m.gmail}}</td>
+                    <td>{{m.raiting}}</td>
+                    <td>{{m.registro_fecha}}</td>
+                    <td>{{m.tipo}}</td>
+                    <td>{{m.provincia}}</td>
+                    <td> <a href="seleccionarProveedor/{{m.id_proveedor}}" class="btn btn-info">Editar</a> </td> 
+                    <td> <a href="borrarProveedor/{{m.id_proveedor}}" class="btn btn-danger">Borrar</a> </td> 
+                </tr>    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!--tabla responsiva-->
+</div><!--columna derecha-->
+
+</div><!--la fila-->
+{% endblock %}
